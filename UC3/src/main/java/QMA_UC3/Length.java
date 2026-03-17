@@ -1,8 +1,8 @@
 package QMA_UC3;
 
 public class Length {
-    private double value;
-    private LengthUnit unit;
+    private final double value;
+    private final LengthUnit unit;
 
     public enum LengthUnit {
         FEET(12.0),
