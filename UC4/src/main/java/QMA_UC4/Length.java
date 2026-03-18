@@ -32,7 +32,7 @@ public class Length {
     }
 
     public boolean compare(Length thatLength) {
-        return this.convertToBaseUnit() == thatLength.convertToBaseUnit();
+        return Math.abs(this.convertToBaseUnit() - thatLength.convertToBaseUnit()) < 0.0001;
     }
 
     @Override
