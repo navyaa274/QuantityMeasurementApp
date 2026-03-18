@@ -50,12 +50,17 @@ public class Length {
     }
 
     public static void main(String[] args) {
-        Length l1 = new Length(1.0, LengthUnit.YARDS);
-        Length l2 = new Length(3.0, LengthUnit.FEET);
-        Length l3 = new Length(91.44, LengthUnit.CENTIMETERS);
+        Length l1 = new Length(1.0, LengthUnit.FEET);
+        Length l2 = new Length(12.0, LengthUnit.INCHES);
+        System.out.println("Are lengths equal? " + l1.equals(l2));
 
-        System.out.println("Yards vs Feet: " + l1.compare(l2));
-        System.out.println("Feet vs Centimeter: " + l2.compare(l3));
+        Length l3 = new Length(1.0, LengthUnit.YARDS);
+        Length l4 = new Length(36.0, LengthUnit.INCHES);
+        System.out.println("Are lengths equal? " + l3.equals(l4));
+
+        Length l5 = new Length(100.0, LengthUnit.CENTIMETERS);
+        Length l6 = new Length(39.3701, LengthUnit.INCHES);
+        System.out.println("Are lengths equal? " + l5.equals(l6));
     }
 }
 
