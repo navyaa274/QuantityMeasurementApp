@@ -1,0 +1,26 @@
+package QMA_UC9;
+
+public enum LengthUnit {
+    FEET(12.0),
+    INCHES(1.0),
+    YARDS(36.0),
+    CENTIMETERS(0.393701);
+
+    private final double conversionFactor;
+
+    LengthUnit(double conversionFactor) {
+        this.conversionFactor = conversionFactor;
+    }
+
+    public double getConversionFactor() {
+        return conversionFactor;
+    }
+
+    double convertToBaseUnit(double value) {
+        return value * this.conversionFactor;
+    }
+
+    static double convertFromBaseToTargetUnit(double baseValue, LengthUnit targetUnit) {
+        return baseValue / targetUnit.conversionFactor;
+    }
+}
