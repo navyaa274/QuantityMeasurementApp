@@ -131,9 +131,9 @@ public class QMA_UC6Test {
     @Test
     public void differentValuesSameUnitNotEqual() {
         Length l1 = new Length(1.0, Length.LengthUnit.YARDS);
-        Length l2 = new Length(1.0, Length.LengthUnit.YARDS);
+        Length l2 = new Length(2.0, Length.LengthUnit.YARDS);
 
-        assertEquals(l1, l2);
+        assertNotEquals(l1, l2);
     }
 
     @Test
@@ -146,20 +146,31 @@ public class QMA_UC6Test {
 
     @Test
     public void convertFeetToInches() {
-        Length lengthInInches = QMA_UC5.demonstrateConversion(
+        Length lengthInInches = QMA_UC6.demonstrateConversion(
                 3.0, Length.LengthUnit.FEET, Length.LengthUnit.INCHES);
         Length expectedLength = new Length(36.0, Length.LengthUnit.INCHES);
 
-        assertTrue(QMA_UC5.demonstrateLengthEquality(lengthInInches, expectedLength));
+        assertTrue(QMA_UC6.demonstrateLengthEquality(lengthInInches, expectedLength));
     }
 
     @Test
     public void convertYardsToInchesUsingOverloadedMethod () {
         Length lengthInYards = new Length(2.0, Length.LengthUnit.YARDS);
-        Length lengthInInches = QMA_UC5.demonstrateConversion(
+        Length lengthInInches = QMA_UC6.demonstrateConversion(
                 lengthInYards, Length.LengthUnit.INCHES);
         Length expectedLength = new Length(72.0, Length.LengthUnit.INCHES);
 
-        assertTrue(QMA_UC5.demonstrateLengthEquality(lengthInInches, expectedLength));
+        assertTrue(QMA_UC6.demonstrateLengthEquality(lengthInInches, expectedLength));
+    }
+
+    @Test
+    public void addFeetAndInches() {
+        Length l1 = new Length(1.0, Length.LengthUnit.FEET);
+        Length l2 = new Length(12.0, Length.LengthUnit.INCHES);
+
+        Length sumLength = QMA_UC6.demonstrateLengthAddition(l1, l2);
+        Length expectedLength = new Length(2.0, Length.LengthUnit.FEET);
+
+        assertTrue(QMA_UC6.demonstrateLengthEquality(sumLength, expectedLength));
     }
 }
