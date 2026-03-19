@@ -131,9 +131,9 @@ public class QMA_UC5Test {
     @Test
     public void differentValuesSameUnitNotEqual() {
         Length l1 = new Length(1.0, Length.LengthUnit.YARDS);
-        Length l2 = new Length(1.0, Length.LengthUnit.YARDS);
+        Length l2 = new Length(2.0, Length.LengthUnit.YARDS);
 
-        assertEquals(l1, l2);
+        assertNotEquals(l1, l2);
     }
 
     @Test
