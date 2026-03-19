@@ -63,25 +63,38 @@ public class Length {
         return temp.convertTo(targetUnit).value;
     }
 
+    private double convertFromBaseToTargetUnit(double baseValue, LengthUnit targetUnit) {
+        return baseValue / targetUnit.getConversionFactor();
+    }
+
+    public Length add(Length thatLength) {
+
+        if (thatLength == null) {
+            throw new IllegalArgumentException("Length cannot be null");
+        }
+
+        double thisBase = this.convertToBaseUnit();
+        double thatBase = thatLength.convertToBaseUnit();
+
+
+        double sumBase = thisBase + thatBase;
+
+        double finalValue = convertFromBaseToTargetUnit(sumBase, this.unit);
+
+        return new Length(finalValue, this.unit);
+    }
+
     @Override
     public String toString() {
         return value + " " + unit;
     }
 
     public static void main(String[] args) {
-        System.out.println("1 Foot = " +
-                Length.convert(1.0, LengthUnit.FEET, LengthUnit.INCHES) + " Inches");
+        Length l1 = new Length(1.0, LengthUnit.FEET);
+        Length l2 = new Length(12.0, LengthUnit.INCHES);
 
-        System.out.println("100 cm = " +
-                Length.convert(100.0, LengthUnit.CENTIMETERS, LengthUnit.INCHES) + " Inches");
+        Length result = l1.add(l2);
 
-        System.out.println("30.48 cm = " +
-                Length.convert(30.48, LengthUnit.CENTIMETERS, LengthUnit.FEET) + " Feet");
-
-        // Equality check
-        Length a = new Length(1.0, LengthUnit.FEET);
-        Length b = new Length(12.0, LengthUnit.INCHES);
-
-        System.out.println("\nAre 1 foot and 12 inches equal? " + a.equals(b));
+        System.out.println("\n1 foot + 12 inches = " + result);
     }
 }
